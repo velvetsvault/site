@@ -1,9 +1,6 @@
 (function () {
   "use strict";
 
-  var AHASEND_API_KEY =
-    "aha-sk-H5AgBORjt4cNnY2wlm0f5zor_WUq79DGQ6otJeZk5zO-tlCHWmw2qy_uVOyekcE0";
-  var AHASEND_ACCOUNT_ID = "a6e36d35-3b76-48f3-a516-35ce876e6a75";
   var AHASEND_FROM_EMAIL = "contact@hello.velvetsvault.com";
   var AHASEND_TO_EMAIL = "velvetsvault@proton.me";
   var AHASEND_SUBJECT = "New cart inquiry - Velvets Vault";
@@ -252,15 +249,9 @@
   }
 
   function sendCartViaAhaSend(payload) {
-    var endpoint =
-      "https://api.ahasend.com/v2/accounts/" +
-      encodeURIComponent(AHASEND_ACCOUNT_ID) +
-      "/messages";
-
-    return window.fetch(endpoint, {
+    return window.fetch("/api/send-cart-email", {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + AHASEND_API_KEY,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(payload)
@@ -400,15 +391,10 @@
           return;
         }
 
-        if (!AHASEND_ACCOUNT_ID || AHASEND_ACCOUNT_ID === "REPLACE_WITH_AHASEND_ACCOUNT_ID") {
-          showToast("Missing AhaSend account id in js/app.js.", "error");
-          return;
-        }
-
         var textContent =
           "New cart inquiry from Velvets Vault\n\n" +
           "Customer email: " +
-          (userEmail || "(not provided)") +
+          userEmail +
           "\n\n" +
           "Message:\n" +
           userMessage +
@@ -428,11 +414,9 @@
           ],
           subject: AHASEND_SUBJECT,
           text_content: textContent,
-          reply_to: userEmail
-            ? {
-                email: userEmail
-              }
-            : undefined
+          reply_to: {
+            email: userEmail
+          }
         };
 
         try {
