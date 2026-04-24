@@ -5,6 +5,7 @@
   var AHASEND_TO_EMAIL = "velvetsvault@proton.me";
   var AHASEND_SUBJECT = "New cart inquiry - Velvets Vault";
   var FLOATING_TELEGRAM_USERNAME = "Jack2winn";
+  var FLOATING_WHATSAPP_NUMBER = "17744574947";
 
   var loadScreen = document.getElementById("load-screen");
   var splashVideo = document.getElementById("splash-video");
@@ -217,10 +218,10 @@
     }
 
     if (floatingWhatsapp) {
-      function noopBubbleClick(e) {
-        e.preventDefault();
-      }
-      floatingWhatsapp.addEventListener("click", noopBubbleClick);
+      floatingWhatsapp.addEventListener("click", function () {
+        var url = "https://wa.me/" + encodeURIComponent(FLOATING_WHATSAPP_NUMBER);
+        window.open(url, "_blank", "noopener,noreferrer");
+      });
     }
   }
 
