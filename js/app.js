@@ -4,7 +4,7 @@
   var AHASEND_FROM_EMAIL = "contact@hello.velvetsvault.com";
   var AHASEND_TO_EMAIL = "velvetsvault@proton.me";
   var AHASEND_SUBJECT = "New cart inquiry - Velvets Vault";
-  var FLOATING_TELEGRAM_USERNAME = "Jack2winn";
+  var FLOATING_TELEGRAM_USERNAME = "velvetsvault";
   var FLOATING_WHATSAPP_NUMBER = "17744574947";
 
   var loadScreen = document.getElementById("load-screen");
